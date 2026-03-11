@@ -47,12 +47,35 @@
 
     <main class="main-grid">
       <aside class="sidebar">
+        <section class="panel countdown-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Exam Clock</p>
+            <h2>Countdown</h2>
+          </div>
+          <div id="countdownCard" class="countdown-card"></div>
+          <div class="countdown-controls">
+            <label class="input-stack" for="examDateInput">
+              <span>Target exam date</span>
+              <input id="examDateInput" type="date">
+            </label>
+            <button class="button button-secondary" id="saveExamDateButton" type="button">Save Exam Date</button>
+          </div>
+        </section>
+
         <section class="panel metrics-panel">
           <div class="panel-heading">
             <p class="eyebrow">Progress</p>
             <h2>Your Dashboard</h2>
           </div>
           <div class="metrics" id="metrics"></div>
+        </section>
+
+        <section class="panel analytics-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Readiness</p>
+            <h2>Performance Readout</h2>
+          </div>
+          <div id="analytics"></div>
         </section>
 
         <section class="panel roadmap-panel">
@@ -92,7 +115,7 @@
             <p class="eyebrow">Bigger Tests</p>
             <h2>Weekly checkpoints and final mocks</h2>
             <p class="section-text">
-              Use these once you finish the related study block. Scores are saved in your browser.
+              Unlock these as you finish each study block. Scores are saved in your browser.
             </p>
           </div>
           <div class="assessment-grid" id="assessmentGrid"></div>

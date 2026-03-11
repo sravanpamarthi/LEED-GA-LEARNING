@@ -9,6 +9,7 @@
   --forest-soft: #2f6d5f;
   --clay: #c86f4a;
   --gold: #d4aa49;
+  --warning: #9a4f33;
   --shadow: 0 24px 60px rgba(35, 45, 42, 0.12);
 }
 
@@ -34,6 +35,15 @@ body {
 button,
 input {
   font: inherit;
+}
+
+input[type="date"] {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(24, 79, 66, 0.2);
+  border-radius: 16px;
+  background: #fffdf8;
+  color: var(--text);
 }
 
 .app-shell {
@@ -84,14 +94,18 @@ h1 {
 .lesson-card p,
 .subsection p,
 .assessment-card p,
-.review-row p {
+.review-row p,
+.countdown-main small,
+.input-stack span,
+.input-stack small {
   color: var(--muted);
   line-height: 1.6;
 }
 
 .hero-actions,
 .quiz-actions,
-.modal-actions {
+.modal-actions,
+.countdown-controls {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -103,7 +117,7 @@ h1 {
   border: 0;
   border-radius: 999px;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, opacity 0.2s ease;
 }
 
 .button:hover,
@@ -111,6 +125,14 @@ h1 {
 .day-card:hover,
 .assessment-card:hover {
   transform: translateY(-2px);
+}
+
+.button:disabled,
+.day-card:disabled,
+.assessment-launch:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .button {
@@ -143,7 +165,12 @@ h1 {
 .question-card,
 .result-box,
 .panel,
-.day-card {
+.day-card,
+.countdown-card,
+.readiness-card,
+.insight-card,
+.focus-row,
+.mini-stat {
   border: 1px solid var(--line);
   background: var(--panel-strong);
 }
@@ -156,7 +183,10 @@ h1 {
 .stat-card span,
 .metric-card span,
 .flash-card span,
-.assessment-type {
+.assessment-type,
+.readiness-card span,
+.insight-card span,
+.mini-stat span {
   color: var(--forest-soft);
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -165,7 +195,10 @@ h1 {
 }
 
 .stat-card strong,
-.metric-card strong {
+.metric-card strong,
+.readiness-card strong,
+.insight-card strong,
+.countdown-main strong {
   display: block;
   margin-top: 8px;
   font-size: 1.8rem;
@@ -174,7 +207,10 @@ h1 {
 .stat-card small,
 .metric-card small,
 .day-card small,
-.assessment-card small {
+.assessment-card small,
+.readiness-card small,
+.insight-card small,
+.mini-stat small {
   display: block;
   margin-top: 6px;
   color: var(--muted);
@@ -209,18 +245,118 @@ h1 {
 .day-list,
 .lesson-grid,
 .flash-grid,
-.assessment-grid {
+.assessment-grid,
+.insight-grid,
+.focus-stack,
+.countdown-meta {
   display: grid;
   gap: 14px;
 }
 
-.metrics {
+.metrics,
+.insight-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.metric-card {
+.metric-card,
+.insight-card,
+.mini-stat {
   padding: 16px;
   border-radius: 18px;
+}
+
+.countdown-card {
+  padding: 18px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(24, 79, 66, 0.08), rgba(212, 170, 73, 0.12));
+}
+
+.countdown-main {
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgba(24, 79, 66, 0.14);
+}
+
+.countdown-main.is-urgent {
+  color: var(--warning);
+}
+
+.countdown-main.is-urgent span,
+.countdown-main.is-urgent small {
+  color: var(--warning);
+}
+
+.countdown-main strong {
+  font-size: 2.4rem;
+}
+
+.input-stack {
+  flex: 1 1 220px;
+}
+
+.input-stack span {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.readiness-card {
+  padding: 18px;
+  border-radius: 22px;
+}
+
+.readiness-strong {
+  background: rgba(65, 136, 94, 0.12);
+}
+
+.readiness-steady {
+  background: rgba(212, 170, 73, 0.12);
+}
+
+.readiness-warning {
+  background: rgba(200, 111, 74, 0.12);
+}
+
+.readiness-early {
+  background: rgba(24, 79, 66, 0.08);
+}
+
+.focus-row {
+  padding: 14px;
+  border-radius: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+}
+
+.focus-row strong {
+  font-size: 1rem;
+}
+
+.focus-score {
+  min-width: 120px;
+  text-align: right;
+}
+
+.focus-score span {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.focus-bar {
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(24, 79, 66, 0.08);
+  overflow: hidden;
+}
+
+.focus-bar div {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--gold), var(--forest-soft));
 }
 
 .day-card {
@@ -249,6 +385,10 @@ h1 {
 
 .day-card.is-done {
   background: #f3f7ef;
+}
+
+.day-card.is-locked {
+  background: #f4efe7;
 }
 
 .lesson-grid {
@@ -387,6 +527,10 @@ legend {
   gap: 14px;
 }
 
+.assessment-card.is-locked {
+  background: #f4efe7;
+}
+
 .assessment-meta {
   display: flex;
   justify-content: space-between;
@@ -443,7 +587,8 @@ legend {
     grid-template-columns: 1fr;
   }
 
-  .metrics {
+  .metrics,
+  .insight-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -461,8 +606,17 @@ legend {
     border-radius: 22px;
   }
 
-  .metrics {
+  .metrics,
+  .insight-grid,
+  .countdown-meta {
     grid-template-columns: 1fr;
+  }
+
+  .focus-row,
+  .assessment-meta,
+  .modal-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   h1 {
