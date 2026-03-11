@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LEED GA Coach | 14-Day Study Sprint</title>
+  <meta
+    name="description"
+    content="A 14-day interactive LEED Green Associate study coach with daily lessons, quizzes, weekly checkpoints, and mock exams."
+  >
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">LEED Green Associate | 14-Day Sprint</p>
+        <h1>Study a little every day, test yourself immediately, and walk into the exam ready.</h1>
+        <p class="hero-text">
+          Built around your LeadingGreen guide, this app turns the material into daily lessons,
+          quick checks, week checkpoints, and final mock exams with saved results.
+        </p>
+        <div class="hero-actions">
+          <button class="button button-primary" id="resumeButton" type="button">Resume Today's Study</button>
+          <button class="button button-secondary" id="resetProgressButton" type="button">Reset Progress</button>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <div class="stat-card">
+          <span>Target</span>
+          <strong>14 Days</strong>
+          <small>Daily lesson + quiz cadence</small>
+        </div>
+        <div class="stat-card">
+          <span>Cadence</span>
+          <strong>2 Checkpoints</strong>
+          <small>End of week 1 and week 2</small>
+        </div>
+        <div class="stat-card">
+          <span>Finish</span>
+          <strong>2 Mocks</strong>
+          <small>Final exam-style practice</small>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-grid">
+      <aside class="sidebar">
+        <section class="panel metrics-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Progress</p>
+            <h2>Your Dashboard</h2>
+          </div>
+          <div class="metrics" id="metrics"></div>
+        </section>
+
+        <section class="panel roadmap-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Roadmap</p>
+            <h2>14-Day Plan</h2>
+          </div>
+          <div class="day-list" id="dayList"></div>
+        </section>
+      </aside>
+
+      <section class="content-column">
+        <section class="panel lesson-panel">
+          <div class="panel-heading">
+            <p class="eyebrow" id="lessonEyebrow">Day 1</p>
+            <h2 id="lessonTitle">Loading study plan...</h2>
+            <p id="lessonTheme" class="section-text"></p>
+          </div>
+          <div id="lessonContent" class="lesson-content"></div>
+        </section>
+
+        <section class="panel assessment-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Daily Quiz</p>
+            <h2 id="quizTitle">Check what you remember</h2>
+            <p id="quizIntro" class="section-text"></p>
+          </div>
+          <form id="quizForm" class="quiz-form"></form>
+          <div class="quiz-actions">
+            <button class="button button-primary" id="submitQuizButton" type="button">Submit Quiz</button>
+          </div>
+          <div id="quizResult" class="result-box hidden"></div>
+        </section>
+
+        <section class="panel checkpoints-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Bigger Tests</p>
+            <h2>Weekly checkpoints and final mocks</h2>
+            <p class="section-text">
+              Use these once you finish the related study block. Scores are saved in your browser.
+            </p>
+          </div>
+          <div class="assessment-grid" id="assessmentGrid"></div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <script src="./data.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
